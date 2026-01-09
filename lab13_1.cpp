@@ -19,3 +19,33 @@ int main(){
     cout << "Min = " << B[5];
     return 0;
 }
+void stat(const double data[], int size, double result[])
+{
+    double sum = 0.0;
+    double sumSq = 0.0;
+    double geoProduct = 1.0;
+    double harmSum = 0.0;
+
+    double maxVal = data[0];
+    double minVal = data[0];
+
+    for(int i = 0; i < size; i++){
+        sum += data[i];
+        sumSq += data[i] * data[i];
+        geoProduct *= data[i];
+        harmSum += 1.0 / data[i];
+
+        if(data[i] > maxVal)
+            maxVal = data[i];
+
+        if(data[i] < minVal)
+            minVal = data[i];
+    }
+
+    result[0] = sum / size;
+    result[1] = sqrt((sumSq / size) - (result[0] * result[0]));
+    result[2] = pow(geoProduct, 1.0 / size);
+    result[3] = size / harmSum;
+    result[4] = maxVal;
+    result[5] = minVal;
+}
